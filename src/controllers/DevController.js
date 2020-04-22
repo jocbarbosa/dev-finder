@@ -1,6 +1,8 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
 
+
+
 module.exports = {
     async store(request, response) {
         const { github_username, techs, latitude, longitude } = request.body;
@@ -30,5 +32,13 @@ module.exports = {
         }
 
         return response.json(dev);
+    },
+
+    async index(request, response) {
+        const devs = await Dev.find();
+
+        return response.json({
+            devs
+        });
     }
 }
