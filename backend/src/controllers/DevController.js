@@ -49,5 +49,14 @@ module.exports = {
 
     async destroy(request, response) {
 
+        const { github_username } = request.params;
+
+        const dev = await Dev.deleteOne({
+            github_username: github_username
+        });
+
+        response.json({
+            deletedDev: dev
+        })
     }
 }
